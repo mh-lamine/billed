@@ -38,8 +38,18 @@ describe("Given I am connected as an employee", () => {
           /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i
         )
         .map((a) => a.innerHTML);
-      const antiChrono = (a, b) => (a < b ? 1 : -1);
-      const datesSorted = [...dates].sort(antiChrono);
+
+        console.log("Extracted dates:", dates);
+
+      // Define the sorting function for ascending order using Date objects
+      const chrono = (a, b) => new Date(a) - new Date(b);
+
+      // Sort dates in ascending order
+      const datesSorted = [...dates].sort(chrono);
+
+      console.log("Sorted dates:", datesSorted);
+
+      // Expect the dates array to be equal to the sorted dates array
       expect(dates).toEqual(datesSorted);
     });
   });
