@@ -20,6 +20,10 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
+  if (!data) {
+    return ""; // Return an empty string if data is undefined or null
+  }
+
   // Sort the data by date in ascending order before rendering
   const sortedData = data.sort((a, b) => new Date(a.date) - new Date(b.date));
   return sortedData && sortedData.length
