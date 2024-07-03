@@ -20,6 +20,18 @@ export default class NewBill {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
+    const fileExtension = fileName.split(".").pop().toLowerCase();
+    const validExtensions = ["jpg", "jpeg", "png"];
+
+    // Vérifier l'extension du fichier
+    if (!validExtensions.includes(fileExtension)) {
+      alert(
+        "Veuillez sélectionner un fichier avec une extension valide (jpg, jpeg, png)."
+      );
+      this.document.querySelector(`input[data-testid="file"]`).value = ""; // Réinitialiser le champ fichier
+      return;
+    }
+
     const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
